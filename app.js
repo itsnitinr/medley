@@ -24,13 +24,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-nitinr:mumbai97@medleydb-elarv.mongodb.net/medleyDB", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect("mongodb+srv://admin-nitinr:medleyAdmin@medleydb-elarv.mongodb.net/medleyDB", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     googleId: String,
-    lyrics: String
+    lyrics: [String]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -84,7 +84,7 @@ function(req, res) {
 app.get("/home", function(req, res) {
     
     if (req.isAuthenticated()) {
-        User.find({"lyrics": {$ne: null}}, function(err, foundUsers) {
+        User.find({"lyrics": {$exists: true, $ne: []}}, function(err, foundUsers) {
             if (err) {
                 console.log(err);
             } else {
@@ -155,7 +155,7 @@ app.post("/submit", function(req, res) {
             console.log(err);
         } else {
             if(foundUser) {
-                foundUser.lyrics = submittedLyric;
+                foundUser.lyrics.push(submittedLyric);
                 foundUser.save(function() {
                     res.redirect("/home");
                 });

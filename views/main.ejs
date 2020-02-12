@@ -43,16 +43,18 @@
     <div class="card-columns">
         
         <% foundUsers.forEach(function(user) { %>
-            <div class="card p-3">
-                <blockquote class="blockquote mb-0 card-body">
-                    <p><%= user.lyrics %></p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            <cite title="Source Title"><%= user.username %></cite>
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>
+            <% user.lyrics.forEach(function(lyric) { %>
+                <div class="card p-3">
+                    <blockquote class="blockquote mb-0 card-body"> 
+                        <p><%= lyric %></p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                <cite title="Source Title"><%= user.username %></cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                </div>
+            <% }); %>
         <% }); %> 
 
     </div>
