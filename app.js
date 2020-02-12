@@ -53,7 +53,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets"
+    callbackURL: "http://localhost:3000/auth/google/home"
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
@@ -74,7 +74,7 @@ app.get("/register", function(req, res) {
 app.get("/auth/google",
   passport.authenticate('google', { scope: ['profile'] }));
 
-app.get("/auth/google/secrets", 
+app.get("/auth/google/home", 
 passport.authenticate('google', { failureRedirect: '/login' }),
 function(req, res) {
     // Successful authentication, redirect home.
