@@ -53,7 +53,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/home"
+    callbackURL: "https://medley-app.herokuapp.com/auth/google/home"
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
