@@ -4,7 +4,7 @@ This website was made using the following technologies :
 * NodeJS
 * ExpressJS
 * EJS
-* PassportJS
+* PassportJS (Local and Google Strategy)
 * Mongoose for MongoDB 
 
 ## Some Screenshots :
